@@ -33,5 +33,7 @@ ggplot(data=datps1, aes(datps1$age)) + geom_histogram(binwidth = 1)
 ggplot(data=datps1, aes(datps1$iq)) + geom_histogram(binwidth = 1)
 
 
+#3
+
 
 
