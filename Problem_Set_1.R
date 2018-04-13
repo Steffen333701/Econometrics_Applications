@@ -34,6 +34,42 @@ ggplot(data=datps1, aes(datps1$iq)) + geom_histogram(binwidth = 1)
 
 
 #3
+conditexp  <- data.frame(educ = 0, mean.of.logwage = 0)
+
+for (i in min(datps1$educ):max(datps1$educ))
+     {
+        conditexp[i,1] <- i
+        conditexp[i,2] <- mean(datps1[datps1$educ == i, "logWage"])}
+
+ggplot(data=conditexp[conditexp$educ >= min(datps1$educ),], aes(x=educ, y=mean.of.logwage)) + geom_line()
+
+#4
+reg.model<-lm(logWage ~ educ, data=datps1)
+summary(reg.model)
+
+
+ggplot(data=conditexp[conditexp$educ >= min(datps1$educ),], aes(x=educ, y=mean.of.logwage)) + 
+  geom_line(color = "blue", size= 2) +
+  geom_abline(intercept = reg.model$coefficients[1], slope = reg.model$coefficients[2], color="red", size= 2)
+
+## 5 ====================
+
+## 6 ====================
+datps1$exper <- datps1$age - datps1$educ - 6
+
+## 7 ====================
+reg.model.2 <- lm(logWage ~ educ + exper + I(exper^2), data = datps1)
+summary(reg.model.2)
+
+## 10 ===================
+reg.model.3 <- lm(logWage ~ educ + exper + I(exper^2) + age, data = datps1)
+summary(reg.model.3)
+
+# Here one can see perfect multicollinearity
+
+## 12 ===================
+reg.model.4 <- lm(logWage ~ educ + iq, data = datps1)
+summary(reg.model.4)
 
 
 
