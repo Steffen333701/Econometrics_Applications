@@ -20,6 +20,8 @@ datps1 <- read.csv(file = "ps1_nls.csv")
 summary(datps1)
 sapply(datps1, sd, na.rm=TRUE)
 
+# iq of 50 is kind of low?
+
 #2
 
 hist(datps1$logWage)
@@ -54,12 +56,18 @@ ggplot(data=conditexp[conditexp$educ >= min(datps1$educ),], aes(x=educ, y=mean.o
 
 ## 5 ====================
 
+#one more year of educations increases the logwage by 6%
+#two more years of education increases logwage by 12%
+
 ## 6 ====================
 datps1$exper <- datps1$age - datps1$educ - 6
 
 ## 7 ====================
 reg.model.2 <- lm(logWage ~ educ + exper + I(exper^2), data = datps1)
 summary(reg.model.2)
+
+## 8 ====================
+
 
 ## 10 ===================
 reg.model.3 <- lm(logWage ~ educ + exper + I(exper^2) + age, data = datps1)
