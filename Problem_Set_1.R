@@ -68,6 +68,7 @@ summary(reg.model.2)
 
 ## 8 ====================
 
+# number 8
 
 ## 10 ===================
 reg.model.3 <- lm(logWage ~ educ + exper + I(exper^2) + age, data = datps1)
