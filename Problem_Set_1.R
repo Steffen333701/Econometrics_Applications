@@ -9,6 +9,8 @@ setwd("C:/Users/Steffen_Laptop/Documents/R/Econometrics_applications/Econometric
 
 # Packages
 library(tidyverse)
+library(psych)
+library(skimr)
 
 ########################################################################
 
@@ -20,6 +22,14 @@ datps1 <- read.csv(file = "ps1_nls.csv")
 summary(datps1)
 sapply(datps1, sd, na.rm=TRUE)
 
+describe(datps1)
+skim(datps1)
+datps1 %>% summarise_all (.funs = funs( mean = mean(.), sd = sd(.), min = min(.), max = max(.))) %>%
+gather() %>%
+  serarate (key, into=c("variable", "stat"), sep = "_") %>%
+              dcast (formula = variable ~ stat)
+
+            
 # iq of 50 is kind of low?
 
 #2
