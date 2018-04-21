@@ -46,7 +46,7 @@ ggplot(data=datps1, aes(datps1$iq)) + geom_histogram(binwidth = 1)
 
 
 #3
-conditexp  <- data.frame(educ = 0, mean.of.logwage = 0)
+conditexp  <- data.frame(educ = Na, mean.of.logwage = Na)
 
 for (i in min(datps1$educ):max(datps1$educ))
      {
